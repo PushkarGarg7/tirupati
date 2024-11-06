@@ -102,7 +102,7 @@ load_dotenv()
 google_api_key = os.getenv('GOOGLE_API_KEY')
 
 # Configure the Google API
-genai.configure(api_key=google_api_key)
+genai.configure(api_key="AIzaSyDxLJdD_Bnwm3hl4lp2g9_sU-z6KiRnpN0")
 model = genai.GenerativeModel("gemini-1.5-flash")
 
 # Function to process the invoice and return the paths of the saved XLS files
@@ -154,14 +154,18 @@ def process_invoice(invoice_path):
 
         for code, name in items.items():
             template_filename = f"{code}.xlsx"
-            # template_path = os.path.join("templates", template_filename)
-            # template_directory = os.path.join(os.getcwd(), "backend")  # Adjust the path if needed
-            template_directory = os.path.join(os.path.dirname(os.getcwd()), "backend")
+            
+            # Corrected template folder path
+            # Correct the path calculation to go up one level from the current script directory
+            project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
-            # template_path = os.path.join(template_directory, template_directory)
+# Set the correct path to the backend folder
+            template_directory = os.path.join(project_root, "backend")
+
+# Template file path
             template_path = os.path.join(template_directory, template_filename)
 
-            print(template_path)
+            print(f"Looking for template at: {template_path}")
 
 
             if os.path.exists(template_path):
