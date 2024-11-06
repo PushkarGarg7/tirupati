@@ -102,7 +102,7 @@ load_dotenv()
 google_api_key = os.getenv('GOOGLE_API_KEY')
 
 # Configure the Google API
-genai.configure(api_key="AIzaSyDxLJdD_Bnwm3hl4lp2g9_sU-z6KiRnpN0")
+genai.configure(api_key=google_api_key)
 model = genai.GenerativeModel("gemini-1.5-flash")
 
 # Function to process the invoice and return the paths of the saved XLS files
